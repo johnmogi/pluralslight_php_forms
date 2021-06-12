@@ -23,7 +23,7 @@ if (isset($_POST['submit'])){
     }
     if(!isset($_POST['gender']) || $_POST['gender'] === ''){
         $ok = false;
-    }else{  
+    }else{ 
         $gender = $_POST['gender'];
     }
     if(!isset($_POST['color']) || $_POST['color'] === ''){
@@ -31,13 +31,11 @@ if (isset($_POST['submit'])){
     }else{ 
         $color = $_POST['color'];
     }
-    // if(!isset($_POST['languages'])  ){ 
-    // // || !is_array($_POST['languages']) || count($_POST['languages']) === 0){
-    //     $ok = false;
-    // }else{ 
-    //     $languages = $_POST['languages'];
-    // }
-    
+    if(!isset($_POST['languages']) || !is_array($_POST['languages']) || count($_POST['languages']) === 0){
+        $ok = false;
+    }else{ 
+        $languages = $_POST['languages'];
+    }
     if(!isset($_POST['comments']) || $_POST['comments'] === ''){
         $ok = false;
     }else{ 
@@ -48,7 +46,6 @@ if (isset($_POST['submit'])){
     }else{ 
         $tc = $_POST['tc'];
     };
-
 
     if($ok){ 
     printf('User Name: %s
@@ -72,17 +69,10 @@ if (isset($_POST['submit'])){
 <form action=""
 method="post"
 >
-user Name: <input type="text" name="name" value="<?php echo htmlspecialchars($name, ENT_QUOTES); ?>"><br/>
-Password: <input type="password" name="password"><br/>
-Gender: <input type="radio" name="gender" value="male"<?php
-if($gender === 'male') {
-    echo ' checked';
-}?>
->male</input>
-<input type="radio" name="gender" value="female"<?php
-if($gender === 'female') {
-    echo ' checked';
-}?>>female</input>
+user Name: <input type="text" name="name" id=""><br/>
+Password: <input type="password" value="password"><br/>
+Gender: <input type="radio" name="gender" value="male">male</input>
+<input type="radio" name="gender" value="female">female</input>
 <br/>
 Favorite color: <select name="color">
 <option value="">Please select</option>
@@ -92,23 +82,17 @@ Favorite color: <select name="color">
 </select>
 <br/>
 
-Languages spoken: 
-<br/>
-<select name = "Languages[]" multiple size="3">
+Languages spoken: <select name = "Languages[]" multiple size="3">
+<option value="">Please Select</option>
 <option value="en">English</option>
 <option value="fr">French</option>
 <option value="it">Italian</option>
 </select>
 <br/>
-comments: <textarea name="comments">
-<?php echo htmlspecialchars($comments, ENT_QUOTES); ?>
-</textarea>
+comments: <textarea name="comments"></textarea>
 <br/>
 
 I accept T&amp;C
-<input type="checkbox" name="tc" value="ok" <?php
-if($tc === 'ok'){
-    echo ' checked';
-}?>>
+<input type="checkbox" name="tc" value="ok">
 <input type="submit" name="submit" value="Register">
 </form>
